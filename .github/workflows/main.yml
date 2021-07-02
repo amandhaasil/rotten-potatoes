@@ -24,6 +24,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      # Action: Docker login
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
+        with:
+          username: #{{ secrets.DOCKERHUB_USER }}
+          password: #{{ secrets.DOCKERHUB_PWD }}
 
       # Action: Build and push Docker images
       - name: Build and push Docker images
