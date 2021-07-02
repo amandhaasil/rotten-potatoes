@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movies
+spec:
+  selector:
+    matchLabels:
+      app: movies
+  template:
+    metadata:
+      labels:
+        app: movies
+    spec:
+      containers:
+        - name: movies
+          image: amandhaasil/rotten-potatoes:v1
+          ports:
+            - containerPort: 5000
+          env: # variables from my service , in this case at /src/app.py
+            - name: MONGODB_DB
+              value: admin
+            - name: MONGODB_HOST
+              value: mongo-service
+            - name: MONGODB_PORT
+              value: "27017" # the quotes are so that this won't be interpreted as a number, but as a string
+            - name: MONGODB_USERNAME
+              value: mongouser # same as env on mongodb deployment file
+            - name: MONGODB_PASSWORD
+              value: mongopwd  # same as env on mongodb deployment file
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: movies-service
+spec:
+  selector:
+    app: movies
+  ports:
+    - port: 80 # porta do pod
+      targetPort: 5000 # porta do container
+      nodePort: 30000 # porta do serviço
+  type: NodePort
