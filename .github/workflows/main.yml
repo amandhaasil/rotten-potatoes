@@ -46,7 +46,7 @@ jobs:
           
           tags: |
             amandhaasil/rotten-potatoes:latest
-            amandhaasil/rotten-potatoes:${github.run_number}
+            amandhaasil/rotten-potatoes:${{ github.run_number }}
           # assim eu garanto que eu sempre tenho uma tag diferente
           
           
