@@ -90,8 +90,3 @@ jobs:
           # Fully qualified resource URL of the image(s) to be used for substitutions on the manifest files Example: contosodemo.azurecr.io/helloworld:test
           images: amandhaasil/rotten-potatoes:${{ github.run_number }}
           
-        
-
-          
-          
-          
