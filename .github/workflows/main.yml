@@ -49,5 +49,25 @@ jobs:
             amandhaasil/rotten-potatoes:${{ github.run_number }}
           # assim eu garanto que eu sempre tenho uma tag diferente
           
+  CD: # nome do JOB
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+   # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1.1
+        with:
+          # Acceptable values: generic or arc
+          cluster-type: generic # default is generic
+          
+          # Acceptable values: kubeconfig or service-account or service-principal
+          method: kubeconfig
+          # Kubernetes Config
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+          
           
           
