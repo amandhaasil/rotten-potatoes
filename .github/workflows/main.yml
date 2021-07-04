@@ -78,6 +78,17 @@ jobs:
           manifests: |
             k8s/mongodb/deployment.yaml
             k8s/mongodb/service.yaml
+            
+      # Deploy to Kubernetes cluster  AKA Deploy, our apply locally
+      - name: Deploy Web API
+        uses: Azure/k8s-deploy@v1
+        with:
+          # Path to the manifest files which will be used for deployment.
+          manifests: |
+            k8s/web/deployment.yaml
+          
+          # Fully qualified resource URL of the image(s) to be used for substitutions on the manifest files Example: contosodemo.azurecr.io/helloworld:test
+          images: amandhaasil/rotten-potatoes:${{ github.run_number }}
           
         
 
