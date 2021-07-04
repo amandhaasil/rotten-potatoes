@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: movies
-          image: amandhaasil/rotten-potatoes:v1
+          image: amandhaasil/rotten-potatoes
           ports:
             - containerPort: 5000
           env: # variables from my service , in this case at /src/app.py
