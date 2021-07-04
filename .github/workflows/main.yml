@@ -59,7 +59,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Kubernetes set context
+      - name: Kubernetes set context. # AKA connect to the cluster
         uses: Azure/k8s-set-context@v1.1
         with:
           # Acceptable values: generic or arc
@@ -69,6 +69,18 @@ jobs:
           method: kubeconfig
           # Kubernetes Config
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
+      
+      # Deploy to Kubernetes cluster  AKA Deploy, our apply locally
+      - name: Deploy Mongo
+        uses: Azure/k8s-deploy@v1
+        with:
+          # Path to the manifest files which will be used for deployment.
+          manifests: |
+            k8s/mongodb/deployment.yaml
+            k8s/mongodb/service.yaml
+          
+        
+
           
           
           
