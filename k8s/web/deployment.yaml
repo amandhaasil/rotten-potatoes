@@ -3,11 +3,17 @@ kind: Deployment
 metadata:
   name: movies
 spec:
+  replicas: 20
   selector:
     matchLabels:
       app: movies
   template:
     metadata:
+      annotations:
+        # Conectando metricas com Prometheus
+        prometheus.io/scrape: "true" # Coletar? true
+        prometheus.io/path: /metrics # Endpoint que o prometheus vai bater pra coletar as metricas
+        prometheus.io/port: "5000" 
       labels:
         app: movies
     spec:
