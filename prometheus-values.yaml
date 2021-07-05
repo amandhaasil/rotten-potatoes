@@ -699,7 +699,7 @@ server:
   global:
     ## How frequently to scrape targets by default
     ##
-    scrape_interval: 1m
+    scrape_interval: 30s
     ## How long until a scrape request times out
     ##
     scrape_timeout: 10s
@@ -1527,7 +1527,7 @@ serverFiles:
       # service then set this appropriately.
       - job_name: 'kubernetes-service-endpoints-slow'
 
-        scrape_interval: 5m
+        scrape_interval: 30s
         scrape_timeout: 30s
 
         kubernetes_sd_configs:
@@ -1662,7 +1662,7 @@ serverFiles:
       # * `prometheus.io/port`: Scrape the pod on the indicated port instead of the default of `9102`.
       - job_name: 'kubernetes-pods-slow'
 
-        scrape_interval: 5m
+        scrape_interval: 30s
         scrape_timeout: 30s
 
         kubernetes_sd_configs:
